@@ -11,7 +11,7 @@ SRC_FOLDER = src
 OUTPUT = bin/Nanite.elf 
 
 
-SRC = src/init.c 
+SRC = src/init.c src/handler.c
 
 OBJ = $(SRC:.c=.o)
 
