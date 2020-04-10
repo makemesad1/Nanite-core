@@ -47,6 +47,7 @@ SECTIONS{
 		. = ALIGN(4);
 		_sdata = .;
 		*(.data)
+		*(.data.*)
 		. = ALIGN(4);
 		_edata = .;
 	} >SRAM1 AT>FLASH_AXIM
@@ -70,3 +71,4 @@ SECTIONS{
 }
 
 /* Work on more exact memory map */
+/* Work on c++ global object creation */

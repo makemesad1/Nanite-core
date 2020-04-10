@@ -4,7 +4,9 @@ extern "C" {
 #endif
 
 extern void *_estack, *_sidata, *_sdata, *_edata, *_sbss, *_ebss;
-extern void *_clbarr_ladr, *_clbarr_eadr, *_clbadd;
+extern void *_clbarr_ladr, *_clbarr_eadr;
+
+extern void register_handler(int i, void (*func )(void));
 
 
 /* External functions */
@@ -34,7 +36,6 @@ void __attribute__((naked, noreturn)) Reset_Handler()
 	//Fill in clbarr with default hanndler
 	for (pDest = &_clbarr_ladr; pDest != &_clbarr_eadr; pDest++)
 		*pDest = (void *) &Default_Handler;
-
 		
 	while(1);
 

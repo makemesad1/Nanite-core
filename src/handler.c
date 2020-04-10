@@ -41,13 +41,11 @@ enum HANLDER_TYPE{
     //Complete this list
 };
 
-int z = 6;
-int q = 7;
 
 void *clb_arr[228] __attribute__((section(".intclb"), used));
 
-void register_handler(enum HANLDER_TYPE handler, void (*func)(void)){
-    //Now register this handler in ram i guess
+void register_handler(int i, void (*func)()){
+
 }
 
 #ifdef __cplusplus

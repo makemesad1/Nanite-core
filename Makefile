@@ -3,8 +3,8 @@ LD = arm-none-eabi-g++
 
 LD_SCRIPT = MEMORY.ld
 
-CC_FLAGS = -c -O2  -Iinc -mthumb -mfloat-abi=hard -mcpu=cortex-m7 -ffunction-sections
-LD_FLAGS = -T$(LD_SCRIPT) -Wl,--gc-sections -nostartfiles -nodefaultlibs -nostdlib -Llib $(LIBS)
+CC_FLAGS = -c  -Iinc -mthumb -mfloat-abi=hard -mcpu=cortex-m7 -ffunction-sections -fno-exceptions
+LD_FLAGS = -T$(LD_SCRIPT) -Wl,--gc-sections -nostartfiles -nodefaultlibs -nostdlib -fno-exceptions -Llib $(LIBS)
 
 SRC_FOLDER = src
 
