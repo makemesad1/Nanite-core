@@ -40,6 +40,8 @@ enum HANLDER_TYPE{
     //Complete this list
 };
 
+//void *clb_region[] __attribute__((section(".intclb"), used)) = {0};
+
 void register_handler(enum HANLDER_TYPE handler, void (*func)(void)){
     //Now register this handler in ram i guess
 }

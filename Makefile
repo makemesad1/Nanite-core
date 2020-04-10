@@ -11,11 +11,11 @@ SRC_FOLDER = src
 OUTPUT = bin/Nanite.elf 
 
 
-SRC = src/init.c src/handler.c
+SRC = src/init.c
 
 OBJ = $(SRC:.c=.o)
 
-all: bin $(OUTPUT) _th
+all: bin $(OUTPUT)
 
 $(OUTPUT): $(OBJ) 
 	$(LD) $(LD_FLAGS) -o $@ $(OBJ)
