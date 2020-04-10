@@ -4,26 +4,10 @@ extern "C" {
 #endif
 
 extern void *_estack, *_sidata, *_sdata, *_edata, *_sbss, *_ebss;
+extern void *_clbarr_ladr, *_clbarr_eadr, *_clbadd;
 
 
 /* External functions */
-
-
-/* Initializes Data section and bss */ 	
-
-void __attribute__((naked, noreturn)) Reset_Handler()
-{
-
-	void **pSource, **pDest;
-	for (pSource = &_sidata, pDest = &_sdata; pDest != &_edata; pSource++, pDest++)
-		*pDest = *pSource;
-
-	for (pDest = &_sbss; pDest != &_ebss; pDest++)
-		*pDest = 0;
-		
-	while(1);
-
-}
 
 /* Default Handler for all interupts */
 
@@ -32,6 +16,30 @@ void __attribute__((naked, noreturn)) Default_Handler(){
 	for(;;);
 
 }
+
+/* Initializes Data section and bss */ 	
+
+void __attribute__((naked, noreturn)) Reset_Handler()
+{
+
+	//Copy data
+	void **pSource, **pDest;
+	for (pSource = &_sidata, pDest = &_sdata; pDest != &_edata; pSource++, pDest++)
+		*pDest = *pSource;
+
+	//Fill bss with 0
+	for (pDest = &_sbss; pDest != &_ebss; pDest++)
+		*pDest = 0;
+
+	//Fill in clbarr with default hanndler
+	for (pDest = &_clbarr_ladr; pDest != &_clbarr_eadr; pDest++)
+		*pDest = (void *) &Default_Handler;
+
+		
+	while(1);
+
+}
+
 
 /* Weak Aliases for all interupt handlers, defaulting to Default Handler */
 

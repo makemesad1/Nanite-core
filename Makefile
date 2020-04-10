@@ -3,7 +3,7 @@ LD = arm-none-eabi-g++
 
 LD_SCRIPT = MEMORY.ld
 
-CC_FLAGS = -c  -Iinc -mthumb -mfloat-abi=hard -mcpu=cortex-m7 -ffunction-sections
+CC_FLAGS = -c -O2  -Iinc -mthumb -mfloat-abi=hard -mcpu=cortex-m7 -ffunction-sections
 LD_FLAGS = -T$(LD_SCRIPT) -Wl,--gc-sections -nostartfiles -nodefaultlibs -nostdlib -Llib $(LIBS)
 
 SRC_FOLDER = src
@@ -11,18 +11,24 @@ SRC_FOLDER = src
 OUTPUT = bin/Nanite.elf 
 
 
-SRC = src/init.c
+SRC = src/init.c src/handler.c
+SRCCPP = 
 
 OBJ = $(SRC:.c=.o)
-
+OBJ += $(SRCCPP:.cpp=.o)
 all: bin $(OUTPUT)
 
+## 
 $(OUTPUT): $(OBJ) 
 	$(LD) $(LD_FLAGS) -o $@ $(OBJ)
 
-## BUILD OBJECT HERE ##
+
 %.o: %.c
 	$(CC) $(CC_FLAGS)  $< -o $@
+
+%.o: %.cpp
+	$(CC) $(CC_FLAGS)  $< -o $@
+##	
 
 clean:
 	rm $(OBJ)

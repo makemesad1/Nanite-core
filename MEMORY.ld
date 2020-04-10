@@ -23,7 +23,9 @@ SECTIONS{
 	 */
 
 	.isr_vector : {
-	KEEP(*(.isr_vector))
+		_isr_vec_ladr = .;
+		KEEP(*(.isr_vector))
+		_isr_vec_eadr = .;
 	} >FLASH_AXIM
 	/* END OF VECTORS */
 
@@ -55,6 +57,15 @@ SECTIONS{
 		*(.bss)
 		. = ALIGN(4);
 		_ebss = .;
+	} >SRAM1
+
+
+	/* VECTORs in ram for dynamic vector assigment, goes right after bss section, so take care when writing to global arrays can overwrite the intclb sector */
+	.intclb : {
+		. = ALIGN(4);
+		_clbarr_ladr = .;
+		KEEP(*(.intclb))
+		_clbarr_eadr = .;
 	} >SRAM1
 }
 
