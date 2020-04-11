@@ -6,8 +6,6 @@ extern "C" {
 extern void *_estack, *_sidata, *_sdata, *_edata, *_sbss, *_ebss;
 extern void *_clbarr_ladr, *_clbarr_eadr;
 
-extern void register_handler(int i, void (*func )(void));
-
 
 /* External functions */
 
