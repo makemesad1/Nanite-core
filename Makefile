@@ -11,7 +11,7 @@ SRC_FOLDER = src
 OUTPUT = bin/Nanite.elf 
 
 
-SRC = src/init.c src/handler.c
+SRC = src/init.c
 SRCCPP = 
 
 OBJ = $(SRC:.c=.o)
@@ -36,6 +36,9 @@ clean:
 clean_k:
 	rm bin/Nanite.elf
 	rm bin/Nanite.bin
+
+d:
+	arm-none-eabi-objdump -d bin/Nanite.elf > DIS.txt
 
 _th:
 	arm-none-eabi-objcopy -O binary bin/Nanite.elf bin/Nanite.bin
