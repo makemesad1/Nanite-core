@@ -42,7 +42,7 @@ void __attribute__((naked, noreturn)) Reset_Handler()
 
 typedef void (*clb_ptr)();
 
-static clb_ptr clb_arr [228] __attribute__((section(".intclb"), used));
+static volatile clb_ptr clb_arr [228] __attribute__((section(".intclb"), used));
 
 void register_irq_handler(int i, void (*func)(void)){
     clb_arr[i] = func;
@@ -75,7 +75,7 @@ enum HANLDER_TYPE{
     DMASTREAM3,
     DMASTREAM4,
     DMASTREAM5,
-    DMSSTREAM6,
+    DMASTREAM6,
     ADC,
     CAN1_TX,
     CAN1_RX0,
@@ -90,134 +90,166 @@ enum HANLDER_TYPE{
 
 
 
-static void NMI_Handler(){
+static void NMI_Handler()
+{
     clb_ptr clb = clb_arr[NMI];
     clb();
 }
 
-
-static void HardFault_Handler(){
+static void HardFault_Handler()
+{
     clb_ptr clb = clb_arr[HARDFAULT];
     clb();
 }
 
-static void MemManage_Handler(){
+static void MemManage_Handler()
+{
     clb_ptr clb = clb_arr[MEMMANGE];
     clb();
 }
 
-static void BusFault_Handler(){
-
+static void BusFault_Handler()
+{
+	clb_ptr clb = clb_arr[BUSFAULT];
+    clb();
 }
 
-static void UsageFault_Handler(){
-
+static void UsageFault_Handler()
+{
+	clb_ptr clb = clb_arr[USAGEFAULT];
+    clb();
 }
 
-static void SVC_Handler(){
-
+static void SVC_Handler()
+{
+	clb_ptr clb = clb_arr[SVCALL];
+    clb();
 }
 
-static void DebugMon_Handler(){
-
+static void DebugMon_Handler()
+{
+	clb_ptr clb = clb_arr[DEBUGMON];
+    clb();
 }
 
-static void PendSV_Handler(){
-
+static void PendSV_Handler()
+{
+	clb_ptr clb = clb_arr[MEMMANGE];
+    clb();
 }
 
-static void SysTick_Handler(){
-
+static void SysTick_Handler()
+{
+	clb_ptr clb = clb_arr[SYSTICK];
+    clb();
 }   
 
 static void WWDG_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[WWDG];
+    clb();
 }   
 
 static void PVD_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[PVD];
+    clb();
 }   
 
 static void TAMP_STAMP_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[TAMPSTAMP];
+    clb();
 }   
 
 static void RTC_WKUP_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[RTCWAKEUP];
+    clb();
 }   
 
 static void FLASH_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[FLASH];
+    clb();
 }   
 
 static void RCC_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[RCC];
+    clb();
 }   
 
 static void EXTI0_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[EXTI0];
+    clb();
 }   
 
 static void EXTI1_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[EXTI1];
+    clb();
 }   
 
 static void EXTI2_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[EXTI2];
+    clb();
 }   
 
 static void EXTI3_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[EXTI3];
+    clb();
 }   
 
 static void EXTI4_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[EXTI4];
+    clb();
 }   
 
 static void DMA1_Stream0_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM1];
+    clb();
 }   
 
 static void DMA1_Stream1_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM1];
+    clb();
 }   
 
 static void DMA1_Stream2_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM2];
+    clb();
 }   
 
 static void DMA1_Stream3_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM3];
+    clb();
 }   
 
 static void DMA1_Stream4_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM4];
+    clb();
 }   
 
 static void DMA1_Stream5_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM5];
+    clb();
 }   
 
 static void DMA1_Stream6_IRQHandler()
 {
-
+	clb_ptr clb = clb_arr[DMASTREAM6];
+    clb();
 }   
 
 static void ADC_IRQHandler()    
@@ -619,7 +651,7 @@ static void SPDIF_RX_IRQHandler()
 
 /* Interupt Vector array for stoing in memory */
 
-void *vectors[] __attribute__((section(".isr_vector"), used)) = {
+static void *vectors[] __attribute__((section(".isr_vector"), used)) = {
     (void *) &_estack,
 	(void *) &Reset_Handler,
 	(void *) &NMI_Handler,
