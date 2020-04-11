@@ -3,7 +3,7 @@ LD = arm-none-eabi-g++
 
 LD_SCRIPT = MEMORY.ld
 
-CC_FLAGS = -c  -Iinc -mthumb -mfloat-abi=hard -mcpu=cortex-m7 -ffunction-sections -fno-exceptions
+CC_FLAGS = -c -O2  -Iinc -mthumb -mfloat-abi=hard -mcpu=cortex-m7 -ffunction-sections -fno-exceptions -fno-non-call-exceptions -fno-rtti -fno-use-cxa-atexit -ffreestanding -fno-common -nostartfiles -nodefaultlibs -nostdlib
 LD_FLAGS = -T$(LD_SCRIPT) -Wl,--gc-sections -nostartfiles -nodefaultlibs -nostdlib -fno-exceptions -Llib $(LIBS)
 
 SRC_FOLDER = src
@@ -11,14 +11,14 @@ SRC_FOLDER = src
 OUTPUT = bin/Nanite.elf 
 
 
-SRC = src/init.c
-SRCCPP = 
+SRC = src/init.c src/main.cpp
 
-OBJ = $(SRC:.c=.o)
-OBJ += $(SRCCPP:.cpp=.o)
+OBJ = src/main.o src/init.o
+
+
 all: bin $(OUTPUT)
 
-## 
+
 $(OUTPUT): $(OBJ) 
 	$(LD) $(LD_FLAGS) -o $@ $(OBJ)
 
@@ -28,7 +28,7 @@ $(OUTPUT): $(OBJ)
 
 %.o: %.cpp
 	$(CC) $(CC_FLAGS)  $< -o $@
-##	
+
 
 clean:
 	rm $(OBJ)

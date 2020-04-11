@@ -3,9 +3,23 @@
 extern "C" {
 #endif
 
-extern void *_estack, *_sidata, *_sdata, *_edata, *_sbss, *_ebss;
+//STACK POINTER
+extern void *_estack;
+
+//DATA AND BSS SECTION INITIAZLIER;
+extern void *_sidata, *_sdata, *_edata, *_sbss, *_ebss;
+
+//DYNAMIC IRQ MECHANISM
 extern void *_clbarr_ladr, *_clbarr_eadr;
 
+#ifdef __cplusplus
+//C++ GLOBAL CONSTRUCTOR
+extern void (*__init_array_start)();
+extern void (*__init_array_end)();
+#endif
+
+//Entry point
+extern int main();
 
 /* Default Handler */
 void __attribute__((naked, noreturn)) Default_Handler(){
@@ -31,7 +45,15 @@ void __attribute__((naked, noreturn)) Reset_Handler()
 	//Fill in clbarr with default hanndler
 	for (pDest = &_clbarr_ladr; pDest != &_clbarr_eadr; pDest++)
 		*pDest = (void *) &Default_Handler;
-		
+	
+	#ifdef __cplusplus
+	//Construction loop
+	for (void (**p)() = &__init_array_start; p < &__init_array_end; ++p) {
+        (*p)();
+    }
+	#endif
+	
+	main();
 	while(1);
 
 }

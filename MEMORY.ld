@@ -23,9 +23,7 @@ SECTIONS{
 	 */
 
 	.isr_vector : {
-		_isr_vec_ladr = .;
 		KEEP(*(.isr_vector))
-		_isr_vec_eadr = .;
 	} >FLASH_AXIM
 	/* END OF VECTORS */
 
@@ -68,6 +66,16 @@ SECTIONS{
 		KEEP(*(.intclb))
 		_clbarr_eadr = .;
 	} >SRAM1
+
+	/* C++ Constructors */
+	. = ALIGN(4);
+	.init_array :
+	{	
+    	__init_array_start = .;
+    	KEEP(*(.init_array*))
+   	    __init_array_end = .;
+		   
+	} > FLASH_AXIM
 }
 
 /* Work on more exact memory map */
