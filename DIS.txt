@@ -2,811 +2,969 @@
 bin/Nanite.elf:     file format elf32-littlearm
 
 
-Disassembly of section .text.startup.main:
-
-080001c8 <main>:
- 80001c8:	2207      	movs	r2, #7
- 80001ca:	2000      	movs	r0, #0
- 80001cc:	6813      	ldr	r3, [r2, #0]
- 80001ce:	3306      	adds	r3, #6
- 80001d0:	6013      	str	r3, [r2, #0]
- 80001d2:	4770      	bx	lr
-
 Disassembly of section .text.Default_Handler:
 
-080001d4 <Default_Handler>:
- 80001d4:	e7fe      	b.n	80001d4 <Default_Handler>
- 80001d6:	bf00      	nop
+080001c8 <Default_Handler>:
+ 80001c8:	e7fe      	b.n	80001c8 <Default_Handler>
+ 80001ca:	bf00      	nop
 
 Disassembly of section .text.NMI_Handler:
 
-080001d8 <NMI_Handler>:
- 80001d8:	4b01      	ldr	r3, [pc, #4]	; (80001e0 <NMI_Handler+0x8>)
- 80001da:	681b      	ldr	r3, [r3, #0]
+080001cc <NMI_Handler>:
+ 80001cc:	4b01      	ldr	r3, [pc, #4]	; (80001d4 <NMI_Handler+0x8>)
+ 80001ce:	681b      	ldr	r3, [r3, #0]
+ 80001d0:	4718      	bx	r3
+ 80001d2:	bf00      	nop
+ 80001d4:	20010000 	.word	0x20010000
+
+Disassembly of section .text.HardFault_Handler:
+
+080001d8 <HardFault_Handler>:
+ 80001d8:	4b01      	ldr	r3, [pc, #4]	; (80001e0 <HardFault_Handler+0x8>)
+ 80001da:	685b      	ldr	r3, [r3, #4]
  80001dc:	4718      	bx	r3
  80001de:	bf00      	nop
  80001e0:	20010000 	.word	0x20010000
 
-Disassembly of section .text.HardFault_Handler:
+Disassembly of section .text.MemManage_Handler:
 
-080001e4 <HardFault_Handler>:
- 80001e4:	4b01      	ldr	r3, [pc, #4]	; (80001ec <HardFault_Handler+0x8>)
- 80001e6:	685b      	ldr	r3, [r3, #4]
+080001e4 <MemManage_Handler>:
+ 80001e4:	4b01      	ldr	r3, [pc, #4]	; (80001ec <MemManage_Handler+0x8>)
+ 80001e6:	689b      	ldr	r3, [r3, #8]
  80001e8:	4718      	bx	r3
  80001ea:	bf00      	nop
  80001ec:	20010000 	.word	0x20010000
 
-Disassembly of section .text.MemManage_Handler:
+Disassembly of section .text.BusFault_Handler:
 
-080001f0 <MemManage_Handler>:
- 80001f0:	4b01      	ldr	r3, [pc, #4]	; (80001f8 <MemManage_Handler+0x8>)
- 80001f2:	689b      	ldr	r3, [r3, #8]
+080001f0 <BusFault_Handler>:
+ 80001f0:	4b01      	ldr	r3, [pc, #4]	; (80001f8 <BusFault_Handler+0x8>)
+ 80001f2:	68db      	ldr	r3, [r3, #12]
  80001f4:	4718      	bx	r3
  80001f6:	bf00      	nop
  80001f8:	20010000 	.word	0x20010000
 
-Disassembly of section .text.BusFault_Handler:
+Disassembly of section .text.UsageFault_Handler:
 
-080001fc <BusFault_Handler>:
- 80001fc:	4b01      	ldr	r3, [pc, #4]	; (8000204 <BusFault_Handler+0x8>)
- 80001fe:	68db      	ldr	r3, [r3, #12]
+080001fc <UsageFault_Handler>:
+ 80001fc:	4b01      	ldr	r3, [pc, #4]	; (8000204 <UsageFault_Handler+0x8>)
+ 80001fe:	691b      	ldr	r3, [r3, #16]
  8000200:	4718      	bx	r3
  8000202:	bf00      	nop
  8000204:	20010000 	.word	0x20010000
 
-Disassembly of section .text.UsageFault_Handler:
+Disassembly of section .text.SVC_Handler:
 
-08000208 <UsageFault_Handler>:
- 8000208:	4b01      	ldr	r3, [pc, #4]	; (8000210 <UsageFault_Handler+0x8>)
- 800020a:	691b      	ldr	r3, [r3, #16]
+08000208 <SVC_Handler>:
+ 8000208:	4b01      	ldr	r3, [pc, #4]	; (8000210 <SVC_Handler+0x8>)
+ 800020a:	695b      	ldr	r3, [r3, #20]
  800020c:	4718      	bx	r3
  800020e:	bf00      	nop
  8000210:	20010000 	.word	0x20010000
 
-Disassembly of section .text.SVC_Handler:
+Disassembly of section .text.DebugMon_Handler:
 
-08000214 <SVC_Handler>:
- 8000214:	4b01      	ldr	r3, [pc, #4]	; (800021c <SVC_Handler+0x8>)
- 8000216:	695b      	ldr	r3, [r3, #20]
+08000214 <DebugMon_Handler>:
+ 8000214:	4b01      	ldr	r3, [pc, #4]	; (800021c <DebugMon_Handler+0x8>)
+ 8000216:	699b      	ldr	r3, [r3, #24]
  8000218:	4718      	bx	r3
  800021a:	bf00      	nop
  800021c:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DebugMon_Handler:
+Disassembly of section .text.PendSV_Handler:
 
-08000220 <DebugMon_Handler>:
- 8000220:	4b01      	ldr	r3, [pc, #4]	; (8000228 <DebugMon_Handler+0x8>)
- 8000222:	699b      	ldr	r3, [r3, #24]
+08000220 <PendSV_Handler>:
+ 8000220:	4b01      	ldr	r3, [pc, #4]	; (8000228 <PendSV_Handler+0x8>)
+ 8000222:	69db      	ldr	r3, [r3, #28]
  8000224:	4718      	bx	r3
  8000226:	bf00      	nop
  8000228:	20010000 	.word	0x20010000
 
-Disassembly of section .text.PendSV_Handler:
+Disassembly of section .text.SysTick_Handler:
 
-0800022c <PendSV_Handler>:
- 800022c:	4b01      	ldr	r3, [pc, #4]	; (8000234 <PendSV_Handler+0x8>)
- 800022e:	69db      	ldr	r3, [r3, #28]
+0800022c <SysTick_Handler>:
+ 800022c:	4b01      	ldr	r3, [pc, #4]	; (8000234 <SysTick_Handler+0x8>)
+ 800022e:	6a1b      	ldr	r3, [r3, #32]
  8000230:	4718      	bx	r3
  8000232:	bf00      	nop
  8000234:	20010000 	.word	0x20010000
 
-Disassembly of section .text.SysTick_Handler:
+Disassembly of section .text.WWDG_IRQHandler:
 
-08000238 <SysTick_Handler>:
- 8000238:	4b01      	ldr	r3, [pc, #4]	; (8000240 <SysTick_Handler+0x8>)
- 800023a:	6a1b      	ldr	r3, [r3, #32]
+08000238 <WWDG_IRQHandler>:
+ 8000238:	4b01      	ldr	r3, [pc, #4]	; (8000240 <WWDG_IRQHandler+0x8>)
+ 800023a:	6a5b      	ldr	r3, [r3, #36]	; 0x24
  800023c:	4718      	bx	r3
  800023e:	bf00      	nop
  8000240:	20010000 	.word	0x20010000
 
-Disassembly of section .text.WWDG_IRQHandler:
+Disassembly of section .text.PVD_IRQHandler:
 
-08000244 <WWDG_IRQHandler>:
- 8000244:	4b01      	ldr	r3, [pc, #4]	; (800024c <WWDG_IRQHandler+0x8>)
- 8000246:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+08000244 <PVD_IRQHandler>:
+ 8000244:	4b01      	ldr	r3, [pc, #4]	; (800024c <PVD_IRQHandler+0x8>)
+ 8000246:	6a9b      	ldr	r3, [r3, #40]	; 0x28
  8000248:	4718      	bx	r3
  800024a:	bf00      	nop
  800024c:	20010000 	.word	0x20010000
 
-Disassembly of section .text.PVD_IRQHandler:
+Disassembly of section .text.TAMP_STAMP_IRQHandler:
 
-08000250 <PVD_IRQHandler>:
- 8000250:	4b01      	ldr	r3, [pc, #4]	; (8000258 <PVD_IRQHandler+0x8>)
- 8000252:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+08000250 <TAMP_STAMP_IRQHandler>:
+ 8000250:	4b01      	ldr	r3, [pc, #4]	; (8000258 <TAMP_STAMP_IRQHandler+0x8>)
+ 8000252:	6adb      	ldr	r3, [r3, #44]	; 0x2c
  8000254:	4718      	bx	r3
  8000256:	bf00      	nop
  8000258:	20010000 	.word	0x20010000
 
-Disassembly of section .text.TAMP_STAMP_IRQHandler:
+Disassembly of section .text.RTC_WKUP_IRQHandler:
 
-0800025c <TAMP_STAMP_IRQHandler>:
- 800025c:	4b01      	ldr	r3, [pc, #4]	; (8000264 <TAMP_STAMP_IRQHandler+0x8>)
- 800025e:	6adb      	ldr	r3, [r3, #44]	; 0x2c
+0800025c <RTC_WKUP_IRQHandler>:
+ 800025c:	4b01      	ldr	r3, [pc, #4]	; (8000264 <RTC_WKUP_IRQHandler+0x8>)
+ 800025e:	6b1b      	ldr	r3, [r3, #48]	; 0x30
  8000260:	4718      	bx	r3
  8000262:	bf00      	nop
  8000264:	20010000 	.word	0x20010000
 
-Disassembly of section .text.RTC_WKUP_IRQHandler:
+Disassembly of section .text.FLASH_IRQHandler:
 
-08000268 <RTC_WKUP_IRQHandler>:
- 8000268:	4b01      	ldr	r3, [pc, #4]	; (8000270 <RTC_WKUP_IRQHandler+0x8>)
- 800026a:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+08000268 <FLASH_IRQHandler>:
+ 8000268:	4b01      	ldr	r3, [pc, #4]	; (8000270 <FLASH_IRQHandler+0x8>)
+ 800026a:	6b5b      	ldr	r3, [r3, #52]	; 0x34
  800026c:	4718      	bx	r3
  800026e:	bf00      	nop
  8000270:	20010000 	.word	0x20010000
 
-Disassembly of section .text.FLASH_IRQHandler:
+Disassembly of section .text.RCC_IRQHandler:
 
-08000274 <FLASH_IRQHandler>:
- 8000274:	4b01      	ldr	r3, [pc, #4]	; (800027c <FLASH_IRQHandler+0x8>)
- 8000276:	6b5b      	ldr	r3, [r3, #52]	; 0x34
+08000274 <RCC_IRQHandler>:
+ 8000274:	4b01      	ldr	r3, [pc, #4]	; (800027c <RCC_IRQHandler+0x8>)
+ 8000276:	6b9b      	ldr	r3, [r3, #56]	; 0x38
  8000278:	4718      	bx	r3
  800027a:	bf00      	nop
  800027c:	20010000 	.word	0x20010000
 
-Disassembly of section .text.RCC_IRQHandler:
+Disassembly of section .text.EXTI0_IRQHandler:
 
-08000280 <RCC_IRQHandler>:
- 8000280:	4b01      	ldr	r3, [pc, #4]	; (8000288 <RCC_IRQHandler+0x8>)
- 8000282:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+08000280 <EXTI0_IRQHandler>:
+ 8000280:	4b01      	ldr	r3, [pc, #4]	; (8000288 <EXTI0_IRQHandler+0x8>)
+ 8000282:	6bdb      	ldr	r3, [r3, #60]	; 0x3c
  8000284:	4718      	bx	r3
  8000286:	bf00      	nop
  8000288:	20010000 	.word	0x20010000
 
-Disassembly of section .text.EXTI0_IRQHandler:
+Disassembly of section .text.EXTI1_IRQHandler:
 
-0800028c <EXTI0_IRQHandler>:
- 800028c:	4b01      	ldr	r3, [pc, #4]	; (8000294 <EXTI0_IRQHandler+0x8>)
- 800028e:	6bdb      	ldr	r3, [r3, #60]	; 0x3c
+0800028c <EXTI1_IRQHandler>:
+ 800028c:	4b01      	ldr	r3, [pc, #4]	; (8000294 <EXTI1_IRQHandler+0x8>)
+ 800028e:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  8000290:	4718      	bx	r3
  8000292:	bf00      	nop
  8000294:	20010000 	.word	0x20010000
 
-Disassembly of section .text.EXTI1_IRQHandler:
+Disassembly of section .text.EXTI2_IRQHandler:
 
-08000298 <EXTI1_IRQHandler>:
- 8000298:	4b01      	ldr	r3, [pc, #4]	; (80002a0 <EXTI1_IRQHandler+0x8>)
- 800029a:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+08000298 <EXTI2_IRQHandler>:
+ 8000298:	4b01      	ldr	r3, [pc, #4]	; (80002a0 <EXTI2_IRQHandler+0x8>)
+ 800029a:	6c5b      	ldr	r3, [r3, #68]	; 0x44
  800029c:	4718      	bx	r3
  800029e:	bf00      	nop
  80002a0:	20010000 	.word	0x20010000
 
-Disassembly of section .text.EXTI2_IRQHandler:
+Disassembly of section .text.EXTI3_IRQHandler:
 
-080002a4 <EXTI2_IRQHandler>:
- 80002a4:	4b01      	ldr	r3, [pc, #4]	; (80002ac <EXTI2_IRQHandler+0x8>)
- 80002a6:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+080002a4 <EXTI3_IRQHandler>:
+ 80002a4:	4b01      	ldr	r3, [pc, #4]	; (80002ac <EXTI3_IRQHandler+0x8>)
+ 80002a6:	6c9b      	ldr	r3, [r3, #72]	; 0x48
  80002a8:	4718      	bx	r3
  80002aa:	bf00      	nop
  80002ac:	20010000 	.word	0x20010000
 
-Disassembly of section .text.EXTI3_IRQHandler:
+Disassembly of section .text.EXTI4_IRQHandler:
 
-080002b0 <EXTI3_IRQHandler>:
- 80002b0:	4b01      	ldr	r3, [pc, #4]	; (80002b8 <EXTI3_IRQHandler+0x8>)
- 80002b2:	6c9b      	ldr	r3, [r3, #72]	; 0x48
+080002b0 <EXTI4_IRQHandler>:
+ 80002b0:	4b01      	ldr	r3, [pc, #4]	; (80002b8 <EXTI4_IRQHandler+0x8>)
+ 80002b2:	6cdb      	ldr	r3, [r3, #76]	; 0x4c
  80002b4:	4718      	bx	r3
  80002b6:	bf00      	nop
  80002b8:	20010000 	.word	0x20010000
 
-Disassembly of section .text.EXTI4_IRQHandler:
+Disassembly of section .text.DMA1_Stream0_IRQHandler:
 
-080002bc <EXTI4_IRQHandler>:
- 80002bc:	4b01      	ldr	r3, [pc, #4]	; (80002c4 <EXTI4_IRQHandler+0x8>)
- 80002be:	6cdb      	ldr	r3, [r3, #76]	; 0x4c
+080002bc <DMA1_Stream0_IRQHandler>:
+ 80002bc:	4b01      	ldr	r3, [pc, #4]	; (80002c4 <DMA1_Stream0_IRQHandler+0x8>)
+ 80002be:	6d1b      	ldr	r3, [r3, #80]	; 0x50
  80002c0:	4718      	bx	r3
  80002c2:	bf00      	nop
  80002c4:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream0_IRQHandler:
+Disassembly of section .text.DMA1_Stream1_IRQHandler:
 
-080002c8 <DMA1_Stream0_IRQHandler>:
- 80002c8:	4b01      	ldr	r3, [pc, #4]	; (80002d0 <DMA1_Stream0_IRQHandler+0x8>)
- 80002ca:	6d1b      	ldr	r3, [r3, #80]	; 0x50
+080002c8 <DMA1_Stream1_IRQHandler>:
+ 80002c8:	4b01      	ldr	r3, [pc, #4]	; (80002d0 <DMA1_Stream1_IRQHandler+0x8>)
+ 80002ca:	6d5b      	ldr	r3, [r3, #84]	; 0x54
  80002cc:	4718      	bx	r3
  80002ce:	bf00      	nop
  80002d0:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream1_IRQHandler:
+Disassembly of section .text.DMA1_Stream2_IRQHandler:
 
-080002d4 <DMA1_Stream1_IRQHandler>:
- 80002d4:	4b01      	ldr	r3, [pc, #4]	; (80002dc <DMA1_Stream1_IRQHandler+0x8>)
- 80002d6:	6d5b      	ldr	r3, [r3, #84]	; 0x54
+080002d4 <DMA1_Stream2_IRQHandler>:
+ 80002d4:	4b01      	ldr	r3, [pc, #4]	; (80002dc <DMA1_Stream2_IRQHandler+0x8>)
+ 80002d6:	6d9b      	ldr	r3, [r3, #88]	; 0x58
  80002d8:	4718      	bx	r3
  80002da:	bf00      	nop
  80002dc:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream2_IRQHandler:
+Disassembly of section .text.DMA1_Stream3_IRQHandler:
 
-080002e0 <DMA1_Stream2_IRQHandler>:
- 80002e0:	4b01      	ldr	r3, [pc, #4]	; (80002e8 <DMA1_Stream2_IRQHandler+0x8>)
- 80002e2:	6d9b      	ldr	r3, [r3, #88]	; 0x58
+080002e0 <DMA1_Stream3_IRQHandler>:
+ 80002e0:	4b01      	ldr	r3, [pc, #4]	; (80002e8 <DMA1_Stream3_IRQHandler+0x8>)
+ 80002e2:	6ddb      	ldr	r3, [r3, #92]	; 0x5c
  80002e4:	4718      	bx	r3
  80002e6:	bf00      	nop
  80002e8:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream3_IRQHandler:
+Disassembly of section .text.DMA1_Stream4_IRQHandler:
 
-080002ec <DMA1_Stream3_IRQHandler>:
- 80002ec:	4b01      	ldr	r3, [pc, #4]	; (80002f4 <DMA1_Stream3_IRQHandler+0x8>)
- 80002ee:	6ddb      	ldr	r3, [r3, #92]	; 0x5c
+080002ec <DMA1_Stream4_IRQHandler>:
+ 80002ec:	4b01      	ldr	r3, [pc, #4]	; (80002f4 <DMA1_Stream4_IRQHandler+0x8>)
+ 80002ee:	6e1b      	ldr	r3, [r3, #96]	; 0x60
  80002f0:	4718      	bx	r3
  80002f2:	bf00      	nop
  80002f4:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream4_IRQHandler:
+Disassembly of section .text.DMA1_Stream5_IRQHandler:
 
-080002f8 <DMA1_Stream4_IRQHandler>:
- 80002f8:	4b01      	ldr	r3, [pc, #4]	; (8000300 <DMA1_Stream4_IRQHandler+0x8>)
- 80002fa:	6e1b      	ldr	r3, [r3, #96]	; 0x60
+080002f8 <DMA1_Stream5_IRQHandler>:
+ 80002f8:	4b01      	ldr	r3, [pc, #4]	; (8000300 <DMA1_Stream5_IRQHandler+0x8>)
+ 80002fa:	6e5b      	ldr	r3, [r3, #100]	; 0x64
  80002fc:	4718      	bx	r3
  80002fe:	bf00      	nop
  8000300:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream5_IRQHandler:
+Disassembly of section .text.DMA1_Stream6_IRQHandler:
 
-08000304 <DMA1_Stream5_IRQHandler>:
- 8000304:	4b01      	ldr	r3, [pc, #4]	; (800030c <DMA1_Stream5_IRQHandler+0x8>)
- 8000306:	6e5b      	ldr	r3, [r3, #100]	; 0x64
+08000304 <DMA1_Stream6_IRQHandler>:
+ 8000304:	4b01      	ldr	r3, [pc, #4]	; (800030c <DMA1_Stream6_IRQHandler+0x8>)
+ 8000306:	6e9b      	ldr	r3, [r3, #104]	; 0x68
  8000308:	4718      	bx	r3
  800030a:	bf00      	nop
  800030c:	20010000 	.word	0x20010000
 
-Disassembly of section .text.DMA1_Stream6_IRQHandler:
+Disassembly of section .text.ADC_IRQHandler:
 
-08000310 <DMA1_Stream6_IRQHandler>:
- 8000310:	4b01      	ldr	r3, [pc, #4]	; (8000318 <DMA1_Stream6_IRQHandler+0x8>)
- 8000312:	6e9b      	ldr	r3, [r3, #104]	; 0x68
+08000310 <ADC_IRQHandler>:
+ 8000310:	4b01      	ldr	r3, [pc, #4]	; (8000318 <ADC_IRQHandler+0x8>)
+ 8000312:	6edb      	ldr	r3, [r3, #108]	; 0x6c
  8000314:	4718      	bx	r3
  8000316:	bf00      	nop
  8000318:	20010000 	.word	0x20010000
 
-Disassembly of section .text.ADC_IRQHandler:
+Disassembly of section .text.CAN1_TX_IRQHandler:
 
-0800031c <ADC_IRQHandler>:
- 800031c:	4b01      	ldr	r3, [pc, #4]	; (8000324 <ADC_IRQHandler+0x8>)
- 800031e:	6edb      	ldr	r3, [r3, #108]	; 0x6c
+0800031c <CAN1_TX_IRQHandler>:
+ 800031c:	4b01      	ldr	r3, [pc, #4]	; (8000324 <CAN1_TX_IRQHandler+0x8>)
+ 800031e:	6f1b      	ldr	r3, [r3, #112]	; 0x70
  8000320:	4718      	bx	r3
  8000322:	bf00      	nop
  8000324:	20010000 	.word	0x20010000
 
-Disassembly of section .text.CAN1_TX_IRQHandler:
+Disassembly of section .text.CAN1_RX0_IRQHandler:
 
-08000328 <CAN1_TX_IRQHandler>:
- 8000328:	4b01      	ldr	r3, [pc, #4]	; (8000330 <CAN1_TX_IRQHandler+0x8>)
- 800032a:	6f1b      	ldr	r3, [r3, #112]	; 0x70
+08000328 <CAN1_RX0_IRQHandler>:
+ 8000328:	4b01      	ldr	r3, [pc, #4]	; (8000330 <CAN1_RX0_IRQHandler+0x8>)
+ 800032a:	6f5b      	ldr	r3, [r3, #116]	; 0x74
  800032c:	4718      	bx	r3
  800032e:	bf00      	nop
  8000330:	20010000 	.word	0x20010000
 
-Disassembly of section .text.CAN1_RX0_IRQHandler:
+Disassembly of section .text.CAN1_RX1_IRQHandler:
 
-08000334 <CAN1_RX0_IRQHandler>:
- 8000334:	4b01      	ldr	r3, [pc, #4]	; (800033c <CAN1_RX0_IRQHandler+0x8>)
- 8000336:	6f5b      	ldr	r3, [r3, #116]	; 0x74
+08000334 <CAN1_RX1_IRQHandler>:
+ 8000334:	4b01      	ldr	r3, [pc, #4]	; (800033c <CAN1_RX1_IRQHandler+0x8>)
+ 8000336:	6f9b      	ldr	r3, [r3, #120]	; 0x78
  8000338:	4718      	bx	r3
  800033a:	bf00      	nop
  800033c:	20010000 	.word	0x20010000
 
-Disassembly of section .text.CAN1_RX1_IRQHandler:
+Disassembly of section .text.CAN1_SCE_IRQHandler:
 
-08000340 <CAN1_RX1_IRQHandler>:
- 8000340:	4b01      	ldr	r3, [pc, #4]	; (8000348 <CAN1_RX1_IRQHandler+0x8>)
- 8000342:	6f9b      	ldr	r3, [r3, #120]	; 0x78
+08000340 <CAN1_SCE_IRQHandler>:
+ 8000340:	4b01      	ldr	r3, [pc, #4]	; (8000348 <CAN1_SCE_IRQHandler+0x8>)
+ 8000342:	6fdb      	ldr	r3, [r3, #124]	; 0x7c
  8000344:	4718      	bx	r3
  8000346:	bf00      	nop
  8000348:	20010000 	.word	0x20010000
 
-Disassembly of section .text.CAN1_SCE_IRQHandler:
-
-0800034c <CAN1_SCE_IRQHandler>:
- 800034c:	4b01      	ldr	r3, [pc, #4]	; (8000354 <CAN1_SCE_IRQHandler+0x8>)
- 800034e:	6fdb      	ldr	r3, [r3, #124]	; 0x7c
- 8000350:	4718      	bx	r3
- 8000352:	bf00      	nop
- 8000354:	20010000 	.word	0x20010000
-
 Disassembly of section .text.EXTI9_5_IRQHandler:
 
-08000358 <EXTI9_5_IRQHandler>:
- 8000358:	4b01      	ldr	r3, [pc, #4]	; (8000360 <EXTI9_5_IRQHandler+0x8>)
- 800035a:	f8d3 3080 	ldr.w	r3, [r3, #128]	; 0x80
- 800035e:	4718      	bx	r3
- 8000360:	20010000 	.word	0x20010000
+0800034c <EXTI9_5_IRQHandler>:
+ 800034c:	4b01      	ldr	r3, [pc, #4]	; (8000354 <EXTI9_5_IRQHandler+0x8>)
+ 800034e:	f8d3 3080 	ldr.w	r3, [r3, #128]	; 0x80
+ 8000352:	4718      	bx	r3
+ 8000354:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM1_BRK_TIM9_IRQHandler:
 
-08000364 <TIM1_BRK_TIM9_IRQHandler>:
- 8000364:	4b01      	ldr	r3, [pc, #4]	; (800036c <TIM1_BRK_TIM9_IRQHandler+0x8>)
- 8000366:	f8d3 3084 	ldr.w	r3, [r3, #132]	; 0x84
- 800036a:	4718      	bx	r3
- 800036c:	20010000 	.word	0x20010000
+08000358 <TIM1_BRK_TIM9_IRQHandler>:
+ 8000358:	4b01      	ldr	r3, [pc, #4]	; (8000360 <TIM1_BRK_TIM9_IRQHandler+0x8>)
+ 800035a:	f8d3 3084 	ldr.w	r3, [r3, #132]	; 0x84
+ 800035e:	4718      	bx	r3
+ 8000360:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM1_UP_TIM10_IRQHandler:
 
-08000370 <TIM1_UP_TIM10_IRQHandler>:
- 8000370:	4b01      	ldr	r3, [pc, #4]	; (8000378 <TIM1_UP_TIM10_IRQHandler+0x8>)
- 8000372:	f8d3 3088 	ldr.w	r3, [r3, #136]	; 0x88
- 8000376:	4718      	bx	r3
- 8000378:	20010000 	.word	0x20010000
+08000364 <TIM1_UP_TIM10_IRQHandler>:
+ 8000364:	4b01      	ldr	r3, [pc, #4]	; (800036c <TIM1_UP_TIM10_IRQHandler+0x8>)
+ 8000366:	f8d3 3088 	ldr.w	r3, [r3, #136]	; 0x88
+ 800036a:	4718      	bx	r3
+ 800036c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM1_TRG_COM_TIM11_IRQHandler:
 
-0800037c <TIM1_TRG_COM_TIM11_IRQHandler>:
- 800037c:	4770      	bx	lr
- 800037e:	bf00      	nop
-
-Disassembly of section .text.Reset_Handler:
-
-08000380 <Reset_Handler>:
- 8000380:	4b17      	ldr	r3, [pc, #92]	; (80003e0 <Reset_Handler+0x60>)
- 8000382:	4a18      	ldr	r2, [pc, #96]	; (80003e4 <Reset_Handler+0x64>)
- 8000384:	4293      	cmp	r3, r2
- 8000386:	d006      	beq.n	8000396 <Reset_Handler+0x16>
- 8000388:	4917      	ldr	r1, [pc, #92]	; (80003e8 <Reset_Handler+0x68>)
- 800038a:	f851 0b04 	ldr.w	r0, [r1], #4
- 800038e:	f843 0b04 	str.w	r0, [r3], #4
- 8000392:	4293      	cmp	r3, r2
- 8000394:	d1f9      	bne.n	800038a <Reset_Handler+0xa>
- 8000396:	4b15      	ldr	r3, [pc, #84]	; (80003ec <Reset_Handler+0x6c>)
- 8000398:	4a15      	ldr	r2, [pc, #84]	; (80003f0 <Reset_Handler+0x70>)
- 800039a:	4293      	cmp	r3, r2
- 800039c:	d004      	beq.n	80003a8 <Reset_Handler+0x28>
- 800039e:	2100      	movs	r1, #0
- 80003a0:	f843 1b04 	str.w	r1, [r3], #4
- 80003a4:	4293      	cmp	r3, r2
- 80003a6:	d1fb      	bne.n	80003a0 <Reset_Handler+0x20>
- 80003a8:	4b12      	ldr	r3, [pc, #72]	; (80003f4 <Reset_Handler+0x74>)
- 80003aa:	4a13      	ldr	r2, [pc, #76]	; (80003f8 <Reset_Handler+0x78>)
- 80003ac:	4293      	cmp	r3, r2
- 80003ae:	d004      	beq.n	80003ba <Reset_Handler+0x3a>
- 80003b0:	4912      	ldr	r1, [pc, #72]	; (80003fc <Reset_Handler+0x7c>)
- 80003b2:	f843 1b04 	str.w	r1, [r3], #4
- 80003b6:	4293      	cmp	r3, r2
- 80003b8:	d1fb      	bne.n	80003b2 <Reset_Handler+0x32>
- 80003ba:	4c11      	ldr	r4, [pc, #68]	; (8000400 <Reset_Handler+0x80>)
- 80003bc:	4b11      	ldr	r3, [pc, #68]	; (8000404 <Reset_Handler+0x84>)
- 80003be:	429c      	cmp	r4, r3
- 80003c0:	d20b      	bcs.n	80003da <Reset_Handler+0x5a>
- 80003c2:	3b01      	subs	r3, #1
- 80003c4:	4625      	mov	r5, r4
- 80003c6:	1b1b      	subs	r3, r3, r4
- 80003c8:	f023 0303 	bic.w	r3, r3, #3
- 80003cc:	3304      	adds	r3, #4
- 80003ce:	441c      	add	r4, r3
- 80003d0:	f855 3b04 	ldr.w	r3, [r5], #4
- 80003d4:	4798      	blx	r3
- 80003d6:	42ac      	cmp	r4, r5
- 80003d8:	d1fa      	bne.n	80003d0 <Reset_Handler+0x50>
- 80003da:	f7ff fef5 	bl	80001c8 <main>
- 80003de:	e7fe      	b.n	80003de <Reset_Handler+0x5e>
- 80003e0:	20010000 	.word	0x20010000
- 80003e4:	20010000 	.word	0x20010000
- 80003e8:	08000520 	.word	0x08000520
- 80003ec:	20010000 	.word	0x20010000
- 80003f0:	20010000 	.word	0x20010000
- 80003f4:	20010000 	.word	0x20010000
- 80003f8:	20010390 	.word	0x20010390
- 80003fc:	080001d5 	.word	0x080001d5
- 8000400:	080008b0 	.word	0x080008b0
- 8000404:	080008b0 	.word	0x080008b0
-
-Disassembly of section .text.SPDIF_RX_IRQHandler:
-
-08000408 <SPDIF_RX_IRQHandler>:
- 8000408:	4770      	bx	lr
- 800040a:	bf00      	nop
+08000370 <TIM1_TRG_COM_TIM11_IRQHandler>:
+ 8000370:	4b01      	ldr	r3, [pc, #4]	; (8000378 <TIM1_TRG_COM_TIM11_IRQHandler+0x8>)
+ 8000372:	f8d3 308c 	ldr.w	r3, [r3, #140]	; 0x8c
+ 8000376:	4718      	bx	r3
+ 8000378:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM1_CC_IRQHandler:
 
-0800040c <TIM1_CC_IRQHandler>:
- 800040c:	4770      	bx	lr
- 800040e:	bf00      	nop
+0800037c <TIM1_CC_IRQHandler>:
+ 800037c:	4b01      	ldr	r3, [pc, #4]	; (8000384 <TIM1_CC_IRQHandler+0x8>)
+ 800037e:	f8d3 3090 	ldr.w	r3, [r3, #144]	; 0x90
+ 8000382:	4718      	bx	r3
+ 8000384:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM2_IRQHandler:
 
-08000410 <TIM2_IRQHandler>:
- 8000410:	4770      	bx	lr
- 8000412:	bf00      	nop
+08000388 <TIM2_IRQHandler>:
+ 8000388:	4b01      	ldr	r3, [pc, #4]	; (8000390 <TIM2_IRQHandler+0x8>)
+ 800038a:	f8d3 3094 	ldr.w	r3, [r3, #148]	; 0x94
+ 800038e:	4718      	bx	r3
+ 8000390:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM3_IRQHandler:
 
-08000414 <TIM3_IRQHandler>:
- 8000414:	4770      	bx	lr
- 8000416:	bf00      	nop
+08000394 <TIM3_IRQHandler>:
+ 8000394:	4b01      	ldr	r3, [pc, #4]	; (800039c <TIM3_IRQHandler+0x8>)
+ 8000396:	f8d3 3098 	ldr.w	r3, [r3, #152]	; 0x98
+ 800039a:	4718      	bx	r3
+ 800039c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM4_IRQHandler:
 
-08000418 <TIM4_IRQHandler>:
- 8000418:	4770      	bx	lr
- 800041a:	bf00      	nop
+080003a0 <TIM4_IRQHandler>:
+ 80003a0:	4b01      	ldr	r3, [pc, #4]	; (80003a8 <TIM4_IRQHandler+0x8>)
+ 80003a2:	f8d3 309c 	ldr.w	r3, [r3, #156]	; 0x9c
+ 80003a6:	4718      	bx	r3
+ 80003a8:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C1_EV_IRQHandler:
 
-0800041c <I2C1_EV_IRQHandler>:
- 800041c:	4770      	bx	lr
- 800041e:	bf00      	nop
+080003ac <I2C1_EV_IRQHandler>:
+ 80003ac:	4b01      	ldr	r3, [pc, #4]	; (80003b4 <I2C1_EV_IRQHandler+0x8>)
+ 80003ae:	f8d3 30a0 	ldr.w	r3, [r3, #160]	; 0xa0
+ 80003b2:	4718      	bx	r3
+ 80003b4:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C1_ER_IRQHandler:
 
-08000420 <I2C1_ER_IRQHandler>:
- 8000420:	4770      	bx	lr
- 8000422:	bf00      	nop
+080003b8 <I2C1_ER_IRQHandler>:
+ 80003b8:	4b01      	ldr	r3, [pc, #4]	; (80003c0 <I2C1_ER_IRQHandler+0x8>)
+ 80003ba:	f8d3 30a4 	ldr.w	r3, [r3, #164]	; 0xa4
+ 80003be:	4718      	bx	r3
+ 80003c0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C2_EV_IRQHandler:
 
-08000424 <I2C2_EV_IRQHandler>:
- 8000424:	4770      	bx	lr
- 8000426:	bf00      	nop
+080003c4 <I2C2_EV_IRQHandler>:
+ 80003c4:	4b01      	ldr	r3, [pc, #4]	; (80003cc <I2C2_EV_IRQHandler+0x8>)
+ 80003c6:	f8d3 30a8 	ldr.w	r3, [r3, #168]	; 0xa8
+ 80003ca:	4718      	bx	r3
+ 80003cc:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C2_ER_IRQHandler:
 
-08000428 <I2C2_ER_IRQHandler>:
- 8000428:	4770      	bx	lr
- 800042a:	bf00      	nop
+080003d0 <I2C2_ER_IRQHandler>:
+ 80003d0:	4b01      	ldr	r3, [pc, #4]	; (80003d8 <I2C2_ER_IRQHandler+0x8>)
+ 80003d2:	f8d3 30ac 	ldr.w	r3, [r3, #172]	; 0xac
+ 80003d6:	4718      	bx	r3
+ 80003d8:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SPI1_IRQHandler:
 
-0800042c <SPI1_IRQHandler>:
- 800042c:	4770      	bx	lr
- 800042e:	bf00      	nop
+080003dc <SPI1_IRQHandler>:
+ 80003dc:	4b01      	ldr	r3, [pc, #4]	; (80003e4 <SPI1_IRQHandler+0x8>)
+ 80003de:	f8d3 30b0 	ldr.w	r3, [r3, #176]	; 0xb0
+ 80003e2:	4718      	bx	r3
+ 80003e4:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SPI2_IRQHandler:
 
-08000430 <SPI2_IRQHandler>:
- 8000430:	4770      	bx	lr
- 8000432:	bf00      	nop
+080003e8 <SPI2_IRQHandler>:
+ 80003e8:	4b01      	ldr	r3, [pc, #4]	; (80003f0 <SPI2_IRQHandler+0x8>)
+ 80003ea:	f8d3 30b4 	ldr.w	r3, [r3, #180]	; 0xb4
+ 80003ee:	4718      	bx	r3
+ 80003f0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.USART1_IRQHandler:
 
-08000434 <USART1_IRQHandler>:
- 8000434:	4770      	bx	lr
- 8000436:	bf00      	nop
+080003f4 <USART1_IRQHandler>:
+ 80003f4:	4b01      	ldr	r3, [pc, #4]	; (80003fc <USART1_IRQHandler+0x8>)
+ 80003f6:	f8d3 30b8 	ldr.w	r3, [r3, #184]	; 0xb8
+ 80003fa:	4718      	bx	r3
+ 80003fc:	20010000 	.word	0x20010000
 
 Disassembly of section .text.USART2_IRQHandler:
 
-08000438 <USART2_IRQHandler>:
- 8000438:	4770      	bx	lr
- 800043a:	bf00      	nop
+08000400 <USART2_IRQHandler>:
+ 8000400:	4b01      	ldr	r3, [pc, #4]	; (8000408 <USART2_IRQHandler+0x8>)
+ 8000402:	f8d3 30bc 	ldr.w	r3, [r3, #188]	; 0xbc
+ 8000406:	4718      	bx	r3
+ 8000408:	20010000 	.word	0x20010000
 
 Disassembly of section .text.USART3_IRQHandler:
 
-0800043c <USART3_IRQHandler>:
- 800043c:	4770      	bx	lr
- 800043e:	bf00      	nop
+0800040c <USART3_IRQHandler>:
+ 800040c:	4b01      	ldr	r3, [pc, #4]	; (8000414 <USART3_IRQHandler+0x8>)
+ 800040e:	f8d3 30c0 	ldr.w	r3, [r3, #192]	; 0xc0
+ 8000412:	4718      	bx	r3
+ 8000414:	20010000 	.word	0x20010000
 
 Disassembly of section .text.EXTI15_10_IRQHandler:
 
-08000440 <EXTI15_10_IRQHandler>:
- 8000440:	4770      	bx	lr
- 8000442:	bf00      	nop
+08000418 <EXTI15_10_IRQHandler>:
+ 8000418:	4b01      	ldr	r3, [pc, #4]	; (8000420 <EXTI15_10_IRQHandler+0x8>)
+ 800041a:	f8d3 30c4 	ldr.w	r3, [r3, #196]	; 0xc4
+ 800041e:	4718      	bx	r3
+ 8000420:	20010000 	.word	0x20010000
 
 Disassembly of section .text.RTC_Alarm_IRQHandler:
 
-08000444 <RTC_Alarm_IRQHandler>:
- 8000444:	4770      	bx	lr
- 8000446:	bf00      	nop
+08000424 <RTC_Alarm_IRQHandler>:
+ 8000424:	4b01      	ldr	r3, [pc, #4]	; (800042c <RTC_Alarm_IRQHandler+0x8>)
+ 8000426:	f8d3 30c8 	ldr.w	r3, [r3, #200]	; 0xc8
+ 800042a:	4718      	bx	r3
+ 800042c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.OTG_FS_WKUP_IRQHandler:
 
-08000448 <OTG_FS_WKUP_IRQHandler>:
- 8000448:	4770      	bx	lr
- 800044a:	bf00      	nop
+08000430 <OTG_FS_WKUP_IRQHandler>:
+ 8000430:	4b01      	ldr	r3, [pc, #4]	; (8000438 <OTG_FS_WKUP_IRQHandler+0x8>)
+ 8000432:	f8d3 30cc 	ldr.w	r3, [r3, #204]	; 0xcc
+ 8000436:	4718      	bx	r3
+ 8000438:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM8_BRK_TIM12_IRQHandler:
 
-0800044c <TIM8_BRK_TIM12_IRQHandler>:
- 800044c:	4770      	bx	lr
- 800044e:	bf00      	nop
+0800043c <TIM8_BRK_TIM12_IRQHandler>:
+ 800043c:	4b01      	ldr	r3, [pc, #4]	; (8000444 <TIM8_BRK_TIM12_IRQHandler+0x8>)
+ 800043e:	f8d3 30d0 	ldr.w	r3, [r3, #208]	; 0xd0
+ 8000442:	4718      	bx	r3
+ 8000444:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM8_UP_TIM13_IRQHandler:
 
-08000450 <TIM8_UP_TIM13_IRQHandler>:
- 8000450:	4770      	bx	lr
- 8000452:	bf00      	nop
+08000448 <TIM8_UP_TIM13_IRQHandler>:
+ 8000448:	4b01      	ldr	r3, [pc, #4]	; (8000450 <TIM8_UP_TIM13_IRQHandler+0x8>)
+ 800044a:	f8d3 30d4 	ldr.w	r3, [r3, #212]	; 0xd4
+ 800044e:	4718      	bx	r3
+ 8000450:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM8_TRG_COM_TIM14_IRQHandler:
 
 08000454 <TIM8_TRG_COM_TIM14_IRQHandler>:
- 8000454:	4770      	bx	lr
- 8000456:	bf00      	nop
+ 8000454:	4b01      	ldr	r3, [pc, #4]	; (800045c <TIM8_TRG_COM_TIM14_IRQHandler+0x8>)
+ 8000456:	f8d3 30d8 	ldr.w	r3, [r3, #216]	; 0xd8
+ 800045a:	4718      	bx	r3
+ 800045c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM8_CC_IRQHandler:
 
-08000458 <TIM8_CC_IRQHandler>:
- 8000458:	4770      	bx	lr
- 800045a:	bf00      	nop
+08000460 <TIM8_CC_IRQHandler>:
+ 8000460:	4b01      	ldr	r3, [pc, #4]	; (8000468 <TIM8_CC_IRQHandler+0x8>)
+ 8000462:	f8d3 30dc 	ldr.w	r3, [r3, #220]	; 0xdc
+ 8000466:	4718      	bx	r3
+ 8000468:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA1_Stream7_IRQHandler:
 
-0800045c <DMA1_Stream7_IRQHandler>:
- 800045c:	4770      	bx	lr
- 800045e:	bf00      	nop
+0800046c <DMA1_Stream7_IRQHandler>:
+ 800046c:	4b01      	ldr	r3, [pc, #4]	; (8000474 <DMA1_Stream7_IRQHandler+0x8>)
+ 800046e:	f8d3 30e0 	ldr.w	r3, [r3, #224]	; 0xe0
+ 8000472:	4718      	bx	r3
+ 8000474:	20010000 	.word	0x20010000
 
 Disassembly of section .text.FMC_IRQHandler:
 
-08000460 <FMC_IRQHandler>:
- 8000460:	4770      	bx	lr
- 8000462:	bf00      	nop
+08000478 <FMC_IRQHandler>:
+ 8000478:	4b01      	ldr	r3, [pc, #4]	; (8000480 <FMC_IRQHandler+0x8>)
+ 800047a:	f8d3 30e4 	ldr.w	r3, [r3, #228]	; 0xe4
+ 800047e:	4718      	bx	r3
+ 8000480:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SDMMC1_IRQHandler:
 
-08000464 <SDMMC1_IRQHandler>:
- 8000464:	4770      	bx	lr
- 8000466:	bf00      	nop
+08000484 <SDMMC1_IRQHandler>:
+ 8000484:	4b01      	ldr	r3, [pc, #4]	; (800048c <SDMMC1_IRQHandler+0x8>)
+ 8000486:	f8d3 30e8 	ldr.w	r3, [r3, #232]	; 0xe8
+ 800048a:	4718      	bx	r3
+ 800048c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM5_IRQHandler:
 
-08000468 <TIM5_IRQHandler>:
- 8000468:	4770      	bx	lr
- 800046a:	bf00      	nop
+08000490 <TIM5_IRQHandler>:
+ 8000490:	4b01      	ldr	r3, [pc, #4]	; (8000498 <TIM5_IRQHandler+0x8>)
+ 8000492:	f8d3 30ec 	ldr.w	r3, [r3, #236]	; 0xec
+ 8000496:	4718      	bx	r3
+ 8000498:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SPI3_IRQHandler:
 
-0800046c <SPI3_IRQHandler>:
- 800046c:	4770      	bx	lr
- 800046e:	bf00      	nop
+0800049c <SPI3_IRQHandler>:
+ 800049c:	4b01      	ldr	r3, [pc, #4]	; (80004a4 <SPI3_IRQHandler+0x8>)
+ 800049e:	f8d3 30f0 	ldr.w	r3, [r3, #240]	; 0xf0
+ 80004a2:	4718      	bx	r3
+ 80004a4:	20010000 	.word	0x20010000
 
 Disassembly of section .text.UART4_IRQHandler:
 
-08000470 <UART4_IRQHandler>:
- 8000470:	4770      	bx	lr
- 8000472:	bf00      	nop
+080004a8 <UART4_IRQHandler>:
+ 80004a8:	4b01      	ldr	r3, [pc, #4]	; (80004b0 <UART4_IRQHandler+0x8>)
+ 80004aa:	f8d3 30f4 	ldr.w	r3, [r3, #244]	; 0xf4
+ 80004ae:	4718      	bx	r3
+ 80004b0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.UART5_IRQHandler:
 
-08000474 <UART5_IRQHandler>:
- 8000474:	4770      	bx	lr
- 8000476:	bf00      	nop
+080004b4 <UART5_IRQHandler>:
+ 80004b4:	4b01      	ldr	r3, [pc, #4]	; (80004bc <UART5_IRQHandler+0x8>)
+ 80004b6:	f8d3 30f8 	ldr.w	r3, [r3, #248]	; 0xf8
+ 80004ba:	4718      	bx	r3
+ 80004bc:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM6_DAC_IRQHandler:
 
-08000478 <TIM6_DAC_IRQHandler>:
- 8000478:	4770      	bx	lr
- 800047a:	bf00      	nop
+080004c0 <TIM6_DAC_IRQHandler>:
+ 80004c0:	4b01      	ldr	r3, [pc, #4]	; (80004c8 <TIM6_DAC_IRQHandler+0x8>)
+ 80004c2:	f8d3 30fc 	ldr.w	r3, [r3, #252]	; 0xfc
+ 80004c6:	4718      	bx	r3
+ 80004c8:	20010000 	.word	0x20010000
 
 Disassembly of section .text.TIM7_IRQHandler:
 
-0800047c <TIM7_IRQHandler>:
- 800047c:	4770      	bx	lr
- 800047e:	bf00      	nop
+080004cc <TIM7_IRQHandler>:
+ 80004cc:	4b01      	ldr	r3, [pc, #4]	; (80004d4 <TIM7_IRQHandler+0x8>)
+ 80004ce:	f8d3 3100 	ldr.w	r3, [r3, #256]	; 0x100
+ 80004d2:	4718      	bx	r3
+ 80004d4:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream0_IRQHandler:
 
-08000480 <DMA2_Stream0_IRQHandler>:
- 8000480:	4770      	bx	lr
- 8000482:	bf00      	nop
+080004d8 <DMA2_Stream0_IRQHandler>:
+ 80004d8:	4b01      	ldr	r3, [pc, #4]	; (80004e0 <DMA2_Stream0_IRQHandler+0x8>)
+ 80004da:	f8d3 3104 	ldr.w	r3, [r3, #260]	; 0x104
+ 80004de:	4718      	bx	r3
+ 80004e0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream1_IRQHandler:
 
-08000484 <DMA2_Stream1_IRQHandler>:
- 8000484:	4770      	bx	lr
- 8000486:	bf00      	nop
+080004e4 <DMA2_Stream1_IRQHandler>:
+ 80004e4:	4b01      	ldr	r3, [pc, #4]	; (80004ec <DMA2_Stream1_IRQHandler+0x8>)
+ 80004e6:	f8d3 3108 	ldr.w	r3, [r3, #264]	; 0x108
+ 80004ea:	4718      	bx	r3
+ 80004ec:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream2_IRQHandler:
 
-08000488 <DMA2_Stream2_IRQHandler>:
- 8000488:	4770      	bx	lr
- 800048a:	bf00      	nop
+080004f0 <DMA2_Stream2_IRQHandler>:
+ 80004f0:	4b01      	ldr	r3, [pc, #4]	; (80004f8 <DMA2_Stream2_IRQHandler+0x8>)
+ 80004f2:	f8d3 310c 	ldr.w	r3, [r3, #268]	; 0x10c
+ 80004f6:	4718      	bx	r3
+ 80004f8:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream3_IRQHandler:
 
-0800048c <DMA2_Stream3_IRQHandler>:
- 800048c:	4770      	bx	lr
- 800048e:	bf00      	nop
+080004fc <DMA2_Stream3_IRQHandler>:
+ 80004fc:	4b01      	ldr	r3, [pc, #4]	; (8000504 <DMA2_Stream3_IRQHandler+0x8>)
+ 80004fe:	f8d3 3110 	ldr.w	r3, [r3, #272]	; 0x110
+ 8000502:	4718      	bx	r3
+ 8000504:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream4_IRQHandler:
 
-08000490 <DMA2_Stream4_IRQHandler>:
- 8000490:	4770      	bx	lr
- 8000492:	bf00      	nop
+08000508 <DMA2_Stream4_IRQHandler>:
+ 8000508:	4b01      	ldr	r3, [pc, #4]	; (8000510 <DMA2_Stream4_IRQHandler+0x8>)
+ 800050a:	f8d3 3114 	ldr.w	r3, [r3, #276]	; 0x114
+ 800050e:	4718      	bx	r3
+ 8000510:	20010000 	.word	0x20010000
 
 Disassembly of section .text.ETH_IRQHandler:
 
-08000494 <ETH_IRQHandler>:
- 8000494:	4770      	bx	lr
- 8000496:	bf00      	nop
+08000514 <ETH_IRQHandler>:
+ 8000514:	4b01      	ldr	r3, [pc, #4]	; (800051c <ETH_IRQHandler+0x8>)
+ 8000516:	f8d3 3118 	ldr.w	r3, [r3, #280]	; 0x118
+ 800051a:	4718      	bx	r3
+ 800051c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.ETH_WKUP_IRQHandler:
 
-08000498 <ETH_WKUP_IRQHandler>:
- 8000498:	4770      	bx	lr
- 800049a:	bf00      	nop
+08000520 <ETH_WKUP_IRQHandler>:
+ 8000520:	4b01      	ldr	r3, [pc, #4]	; (8000528 <ETH_WKUP_IRQHandler+0x8>)
+ 8000522:	f8d3 311c 	ldr.w	r3, [r3, #284]	; 0x11c
+ 8000526:	4718      	bx	r3
+ 8000528:	20010000 	.word	0x20010000
 
 Disassembly of section .text.CAN2_TX_IRQHandler:
 
-0800049c <CAN2_TX_IRQHandler>:
- 800049c:	4770      	bx	lr
- 800049e:	bf00      	nop
+0800052c <CAN2_TX_IRQHandler>:
+ 800052c:	4b01      	ldr	r3, [pc, #4]	; (8000534 <CAN2_TX_IRQHandler+0x8>)
+ 800052e:	f8d3 3120 	ldr.w	r3, [r3, #288]	; 0x120
+ 8000532:	4718      	bx	r3
+ 8000534:	20010000 	.word	0x20010000
 
 Disassembly of section .text.CAN2_RX0_IRQHandler:
 
-080004a0 <CAN2_RX0_IRQHandler>:
- 80004a0:	4770      	bx	lr
- 80004a2:	bf00      	nop
+08000538 <CAN2_RX0_IRQHandler>:
+ 8000538:	4b01      	ldr	r3, [pc, #4]	; (8000540 <CAN2_RX0_IRQHandler+0x8>)
+ 800053a:	f8d3 3124 	ldr.w	r3, [r3, #292]	; 0x124
+ 800053e:	4718      	bx	r3
+ 8000540:	20010000 	.word	0x20010000
 
 Disassembly of section .text.CAN2_RX1_IRQHandler:
 
-080004a4 <CAN2_RX1_IRQHandler>:
- 80004a4:	4770      	bx	lr
- 80004a6:	bf00      	nop
+08000544 <CAN2_RX1_IRQHandler>:
+ 8000544:	4b01      	ldr	r3, [pc, #4]	; (800054c <CAN2_RX1_IRQHandler+0x8>)
+ 8000546:	f8d3 3128 	ldr.w	r3, [r3, #296]	; 0x128
+ 800054a:	4718      	bx	r3
+ 800054c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.CAN2_SCE_IRQHandler:
 
-080004a8 <CAN2_SCE_IRQHandler>:
- 80004a8:	4770      	bx	lr
- 80004aa:	bf00      	nop
+08000550 <CAN2_SCE_IRQHandler>:
+ 8000550:	4b01      	ldr	r3, [pc, #4]	; (8000558 <CAN2_SCE_IRQHandler+0x8>)
+ 8000552:	f8d3 312c 	ldr.w	r3, [r3, #300]	; 0x12c
+ 8000556:	4718      	bx	r3
+ 8000558:	20010000 	.word	0x20010000
 
 Disassembly of section .text.OTG_FS_IRQHandler:
 
-080004ac <OTG_FS_IRQHandler>:
- 80004ac:	4770      	bx	lr
- 80004ae:	bf00      	nop
+0800055c <OTG_FS_IRQHandler>:
+ 800055c:	4b01      	ldr	r3, [pc, #4]	; (8000564 <OTG_FS_IRQHandler+0x8>)
+ 800055e:	f8d3 3130 	ldr.w	r3, [r3, #304]	; 0x130
+ 8000562:	4718      	bx	r3
+ 8000564:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream5_IRQHandler:
 
-080004b0 <DMA2_Stream5_IRQHandler>:
- 80004b0:	4770      	bx	lr
- 80004b2:	bf00      	nop
+08000568 <DMA2_Stream5_IRQHandler>:
+ 8000568:	4b01      	ldr	r3, [pc, #4]	; (8000570 <DMA2_Stream5_IRQHandler+0x8>)
+ 800056a:	f8d3 3134 	ldr.w	r3, [r3, #308]	; 0x134
+ 800056e:	4718      	bx	r3
+ 8000570:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream6_IRQHandler:
 
-080004b4 <DMA2_Stream6_IRQHandler>:
- 80004b4:	4770      	bx	lr
- 80004b6:	bf00      	nop
+08000574 <DMA2_Stream6_IRQHandler>:
+ 8000574:	4b01      	ldr	r3, [pc, #4]	; (800057c <DMA2_Stream6_IRQHandler+0x8>)
+ 8000576:	f8d3 3138 	ldr.w	r3, [r3, #312]	; 0x138
+ 800057a:	4718      	bx	r3
+ 800057c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DMA2_Stream7_IRQHandler:
 
-080004b8 <DMA2_Stream7_IRQHandler>:
- 80004b8:	4770      	bx	lr
- 80004ba:	bf00      	nop
+08000580 <DMA2_Stream7_IRQHandler>:
+ 8000580:	4b01      	ldr	r3, [pc, #4]	; (8000588 <DMA2_Stream7_IRQHandler+0x8>)
+ 8000582:	f8d3 313c 	ldr.w	r3, [r3, #316]	; 0x13c
+ 8000586:	4718      	bx	r3
+ 8000588:	20010000 	.word	0x20010000
 
 Disassembly of section .text.USART6_IRQHandler:
 
-080004bc <USART6_IRQHandler>:
- 80004bc:	4770      	bx	lr
- 80004be:	bf00      	nop
+0800058c <USART6_IRQHandler>:
+ 800058c:	4b01      	ldr	r3, [pc, #4]	; (8000594 <USART6_IRQHandler+0x8>)
+ 800058e:	f8d3 3140 	ldr.w	r3, [r3, #320]	; 0x140
+ 8000592:	4718      	bx	r3
+ 8000594:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C3_EV_IRQHandler:
 
-080004c0 <I2C3_EV_IRQHandler>:
- 80004c0:	4770      	bx	lr
- 80004c2:	bf00      	nop
+08000598 <I2C3_EV_IRQHandler>:
+ 8000598:	4b01      	ldr	r3, [pc, #4]	; (80005a0 <I2C3_EV_IRQHandler+0x8>)
+ 800059a:	f8d3 3144 	ldr.w	r3, [r3, #324]	; 0x144
+ 800059e:	4718      	bx	r3
+ 80005a0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C3_ER_IRQHandler:
 
-080004c4 <I2C3_ER_IRQHandler>:
- 80004c4:	4770      	bx	lr
- 80004c6:	bf00      	nop
+080005a4 <I2C3_ER_IRQHandler>:
+ 80005a4:	4b01      	ldr	r3, [pc, #4]	; (80005ac <I2C3_ER_IRQHandler+0x8>)
+ 80005a6:	f8d3 3148 	ldr.w	r3, [r3, #328]	; 0x148
+ 80005aa:	4718      	bx	r3
+ 80005ac:	20010000 	.word	0x20010000
 
 Disassembly of section .text.OTG_HS_EP1_OUT_IRQHandler:
 
-080004c8 <OTG_HS_EP1_OUT_IRQHandler>:
- 80004c8:	4770      	bx	lr
- 80004ca:	bf00      	nop
+080005b0 <OTG_HS_EP1_OUT_IRQHandler>:
+ 80005b0:	4b01      	ldr	r3, [pc, #4]	; (80005b8 <OTG_HS_EP1_OUT_IRQHandler+0x8>)
+ 80005b2:	f8d3 314c 	ldr.w	r3, [r3, #332]	; 0x14c
+ 80005b6:	4718      	bx	r3
+ 80005b8:	20010000 	.word	0x20010000
 
 Disassembly of section .text.OTG_HS_EP1_IN_IRQHandler:
 
-080004cc <OTG_HS_EP1_IN_IRQHandler>:
- 80004cc:	4770      	bx	lr
- 80004ce:	bf00      	nop
+080005bc <OTG_HS_EP1_IN_IRQHandler>:
+ 80005bc:	4b01      	ldr	r3, [pc, #4]	; (80005c4 <OTG_HS_EP1_IN_IRQHandler+0x8>)
+ 80005be:	f8d3 3150 	ldr.w	r3, [r3, #336]	; 0x150
+ 80005c2:	4718      	bx	r3
+ 80005c4:	20010000 	.word	0x20010000
 
 Disassembly of section .text.OTG_HS_WKUP_IRQHandler:
 
-080004d0 <OTG_HS_WKUP_IRQHandler>:
- 80004d0:	4770      	bx	lr
- 80004d2:	bf00      	nop
+080005c8 <OTG_HS_WKUP_IRQHandler>:
+ 80005c8:	4b01      	ldr	r3, [pc, #4]	; (80005d0 <OTG_HS_WKUP_IRQHandler+0x8>)
+ 80005ca:	f8d3 3154 	ldr.w	r3, [r3, #340]	; 0x154
+ 80005ce:	4718      	bx	r3
+ 80005d0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.OTG_HS_IRQHandler:
 
-080004d4 <OTG_HS_IRQHandler>:
- 80004d4:	4770      	bx	lr
- 80004d6:	bf00      	nop
+080005d4 <OTG_HS_IRQHandler>:
+ 80005d4:	4b01      	ldr	r3, [pc, #4]	; (80005dc <OTG_HS_IRQHandler+0x8>)
+ 80005d6:	f8d3 3158 	ldr.w	r3, [r3, #344]	; 0x158
+ 80005da:	4718      	bx	r3
+ 80005dc:	20010000 	.word	0x20010000
 
 Disassembly of section .text.DCMI_IRQHandler:
 
-080004d8 <DCMI_IRQHandler>:
- 80004d8:	4770      	bx	lr
- 80004da:	bf00      	nop
+080005e0 <DCMI_IRQHandler>:
+ 80005e0:	4b01      	ldr	r3, [pc, #4]	; (80005e8 <DCMI_IRQHandler+0x8>)
+ 80005e2:	f8d3 315c 	ldr.w	r3, [r3, #348]	; 0x15c
+ 80005e6:	4718      	bx	r3
+ 80005e8:	20010000 	.word	0x20010000
 
 Disassembly of section .text.RNG_IRQHandler:
 
-080004dc <RNG_IRQHandler>:
- 80004dc:	4770      	bx	lr
- 80004de:	bf00      	nop
+080005ec <RNG_IRQHandler>:
+ 80005ec:	4b01      	ldr	r3, [pc, #4]	; (80005f4 <RNG_IRQHandler+0x8>)
+ 80005ee:	f8d3 3160 	ldr.w	r3, [r3, #352]	; 0x160
+ 80005f2:	4718      	bx	r3
+ 80005f4:	20010000 	.word	0x20010000
 
 Disassembly of section .text.FPU_IRQHandler:
 
-080004e0 <FPU_IRQHandler>:
- 80004e0:	4770      	bx	lr
- 80004e2:	bf00      	nop
+080005f8 <FPU_IRQHandler>:
+ 80005f8:	4b01      	ldr	r3, [pc, #4]	; (8000600 <FPU_IRQHandler+0x8>)
+ 80005fa:	f8d3 3164 	ldr.w	r3, [r3, #356]	; 0x164
+ 80005fe:	4718      	bx	r3
+ 8000600:	20010000 	.word	0x20010000
 
 Disassembly of section .text.UART7_IRQHandler:
 
-080004e4 <UART7_IRQHandler>:
- 80004e4:	4770      	bx	lr
- 80004e6:	bf00      	nop
+08000604 <UART7_IRQHandler>:
+ 8000604:	4b01      	ldr	r3, [pc, #4]	; (800060c <UART7_IRQHandler+0x8>)
+ 8000606:	f8d3 3168 	ldr.w	r3, [r3, #360]	; 0x168
+ 800060a:	4718      	bx	r3
+ 800060c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.UART8_IRQHandler:
 
-080004e8 <UART8_IRQHandler>:
- 80004e8:	4770      	bx	lr
- 80004ea:	bf00      	nop
+08000610 <UART8_IRQHandler>:
+ 8000610:	4b01      	ldr	r3, [pc, #4]	; (8000618 <UART8_IRQHandler+0x8>)
+ 8000612:	f8d3 316c 	ldr.w	r3, [r3, #364]	; 0x16c
+ 8000616:	4718      	bx	r3
+ 8000618:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SPI4_IRQHandler:
 
-080004ec <SPI4_IRQHandler>:
- 80004ec:	4770      	bx	lr
- 80004ee:	bf00      	nop
+0800061c <SPI4_IRQHandler>:
+ 800061c:	4b01      	ldr	r3, [pc, #4]	; (8000624 <SPI4_IRQHandler+0x8>)
+ 800061e:	f8d3 3170 	ldr.w	r3, [r3, #368]	; 0x170
+ 8000622:	4718      	bx	r3
+ 8000624:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SPI5_IRQHandler:
 
-080004f0 <SPI5_IRQHandler>:
- 80004f0:	4770      	bx	lr
- 80004f2:	bf00      	nop
+08000628 <SPI5_IRQHandler>:
+ 8000628:	4b01      	ldr	r3, [pc, #4]	; (8000630 <SPI5_IRQHandler+0x8>)
+ 800062a:	f8d3 3174 	ldr.w	r3, [r3, #372]	; 0x174
+ 800062e:	4718      	bx	r3
+ 8000630:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SPI6_IRQHandler:
 
-080004f4 <SPI6_IRQHandler>:
- 80004f4:	4770      	bx	lr
- 80004f6:	bf00      	nop
+08000634 <SPI6_IRQHandler>:
+ 8000634:	4b01      	ldr	r3, [pc, #4]	; (800063c <SPI6_IRQHandler+0x8>)
+ 8000636:	f8d3 3178 	ldr.w	r3, [r3, #376]	; 0x178
+ 800063a:	4718      	bx	r3
+ 800063c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SAI1_IRQHandler:
 
-080004f8 <SAI1_IRQHandler>:
- 80004f8:	4770      	bx	lr
- 80004fa:	bf00      	nop
+08000640 <SAI1_IRQHandler>:
+ 8000640:	4b01      	ldr	r3, [pc, #4]	; (8000648 <SAI1_IRQHandler+0x8>)
+ 8000642:	f8d3 317c 	ldr.w	r3, [r3, #380]	; 0x17c
+ 8000646:	4718      	bx	r3
+ 8000648:	20010000 	.word	0x20010000
 
 Disassembly of section .text.LTDC_IRQHandler:
 
-080004fc <LTDC_IRQHandler>:
- 80004fc:	4770      	bx	lr
- 80004fe:	bf00      	nop
+0800064c <LTDC_IRQHandler>:
+ 800064c:	4b01      	ldr	r3, [pc, #4]	; (8000654 <LTDC_IRQHandler+0x8>)
+ 800064e:	f8d3 3180 	ldr.w	r3, [r3, #384]	; 0x180
+ 8000652:	4718      	bx	r3
+ 8000654:	20010000 	.word	0x20010000
 
 Disassembly of section .text.LTDC_ER_IRQHandler:
 
-08000500 <LTDC_ER_IRQHandler>:
- 8000500:	4770      	bx	lr
- 8000502:	bf00      	nop
+08000658 <LTDC_ER_IRQHandler>:
+ 8000658:	f7ff bff8 	b.w	800064c <LTDC_IRQHandler>
 
 Disassembly of section .text.DMA2D_IRQHandler:
 
-08000504 <DMA2D_IRQHandler>:
- 8000504:	4770      	bx	lr
- 8000506:	bf00      	nop
+0800065c <DMA2D_IRQHandler>:
+ 800065c:	4b01      	ldr	r3, [pc, #4]	; (8000664 <DMA2D_IRQHandler+0x8>)
+ 800065e:	f8d3 3188 	ldr.w	r3, [r3, #392]	; 0x188
+ 8000662:	4718      	bx	r3
+ 8000664:	20010000 	.word	0x20010000
 
 Disassembly of section .text.SAI2_IRQHandler:
 
-08000508 <SAI2_IRQHandler>:
- 8000508:	4770      	bx	lr
- 800050a:	bf00      	nop
+08000668 <SAI2_IRQHandler>:
+ 8000668:	4b01      	ldr	r3, [pc, #4]	; (8000670 <SAI2_IRQHandler+0x8>)
+ 800066a:	f8d3 318c 	ldr.w	r3, [r3, #396]	; 0x18c
+ 800066e:	4718      	bx	r3
+ 8000670:	20010000 	.word	0x20010000
 
 Disassembly of section .text.QUADSPI_IRQHandler:
 
-0800050c <QUADSPI_IRQHandler>:
- 800050c:	4770      	bx	lr
- 800050e:	bf00      	nop
+08000674 <QUADSPI_IRQHandler>:
+ 8000674:	4b01      	ldr	r3, [pc, #4]	; (800067c <QUADSPI_IRQHandler+0x8>)
+ 8000676:	f8d3 3190 	ldr.w	r3, [r3, #400]	; 0x190
+ 800067a:	4718      	bx	r3
+ 800067c:	20010000 	.word	0x20010000
 
 Disassembly of section .text.LPTIM1_IRQHandler:
 
-08000510 <LPTIM1_IRQHandler>:
- 8000510:	4770      	bx	lr
- 8000512:	bf00      	nop
+08000680 <LPTIM1_IRQHandler>:
+ 8000680:	4b01      	ldr	r3, [pc, #4]	; (8000688 <LPTIM1_IRQHandler+0x8>)
+ 8000682:	f8d3 3194 	ldr.w	r3, [r3, #404]	; 0x194
+ 8000686:	4718      	bx	r3
+ 8000688:	20010000 	.word	0x20010000
 
 Disassembly of section .text.CEC_IRQHandler:
 
-08000514 <CEC_IRQHandler>:
- 8000514:	4770      	bx	lr
- 8000516:	bf00      	nop
+0800068c <CEC_IRQHandler>:
+ 800068c:	4b01      	ldr	r3, [pc, #4]	; (8000694 <CEC_IRQHandler+0x8>)
+ 800068e:	f8d3 3198 	ldr.w	r3, [r3, #408]	; 0x198
+ 8000692:	4718      	bx	r3
+ 8000694:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C4_EV_IRQHandler:
 
-08000518 <I2C4_EV_IRQHandler>:
- 8000518:	4770      	bx	lr
- 800051a:	bf00      	nop
+08000698 <I2C4_EV_IRQHandler>:
+ 8000698:	4b01      	ldr	r3, [pc, #4]	; (80006a0 <I2C4_EV_IRQHandler+0x8>)
+ 800069a:	f8d3 319c 	ldr.w	r3, [r3, #412]	; 0x19c
+ 800069e:	4718      	bx	r3
+ 80006a0:	20010000 	.word	0x20010000
 
 Disassembly of section .text.I2C4_ER_IRQHandler:
 
-0800051c <I2C4_ER_IRQHandler>:
- 800051c:	4770      	bx	lr
- 800051e:	bf00      	nop
+080006a4 <I2C4_ER_IRQHandler>:
+ 80006a4:	4b01      	ldr	r3, [pc, #4]	; (80006ac <I2C4_ER_IRQHandler+0x8>)
+ 80006a6:	f8d3 31a0 	ldr.w	r3, [r3, #416]	; 0x1a0
+ 80006aa:	4718      	bx	r3
+ 80006ac:	20010000 	.word	0x20010000
+
+Disassembly of section .text.SPDIF_RX_IRQHandler:
+
+080006b0 <SPDIF_RX_IRQHandler>:
+ 80006b0:	4b01      	ldr	r3, [pc, #4]	; (80006b8 <SPDIF_RX_IRQHandler+0x8>)
+ 80006b2:	f8d3 31a4 	ldr.w	r3, [r3, #420]	; 0x1a4
+ 80006b6:	4718      	bx	r3
+ 80006b8:	20010000 	.word	0x20010000
+
+Disassembly of section .text.Reset_Handler:
+
+080006bc <Reset_Handler>:
+ 80006bc:	4b17      	ldr	r3, [pc, #92]	; (800071c <Reset_Handler+0x60>)
+ 80006be:	4a18      	ldr	r2, [pc, #96]	; (8000720 <Reset_Handler+0x64>)
+ 80006c0:	4293      	cmp	r3, r2
+ 80006c2:	d006      	beq.n	80006d2 <Reset_Handler+0x16>
+ 80006c4:	4917      	ldr	r1, [pc, #92]	; (8000724 <Reset_Handler+0x68>)
+ 80006c6:	f851 0b04 	ldr.w	r0, [r1], #4
+ 80006ca:	f843 0b04 	str.w	r0, [r3], #4
+ 80006ce:	4293      	cmp	r3, r2
+ 80006d0:	d1f9      	bne.n	80006c6 <Reset_Handler+0xa>
+ 80006d2:	4b15      	ldr	r3, [pc, #84]	; (8000728 <Reset_Handler+0x6c>)
+ 80006d4:	4a15      	ldr	r2, [pc, #84]	; (800072c <Reset_Handler+0x70>)
+ 80006d6:	4293      	cmp	r3, r2
+ 80006d8:	d004      	beq.n	80006e4 <Reset_Handler+0x28>
+ 80006da:	2100      	movs	r1, #0
+ 80006dc:	f843 1b04 	str.w	r1, [r3], #4
+ 80006e0:	4293      	cmp	r3, r2
+ 80006e2:	d1fb      	bne.n	80006dc <Reset_Handler+0x20>
+ 80006e4:	4b12      	ldr	r3, [pc, #72]	; (8000730 <Reset_Handler+0x74>)
+ 80006e6:	4a13      	ldr	r2, [pc, #76]	; (8000734 <Reset_Handler+0x78>)
+ 80006e8:	4293      	cmp	r3, r2
+ 80006ea:	d004      	beq.n	80006f6 <Reset_Handler+0x3a>
+ 80006ec:	4912      	ldr	r1, [pc, #72]	; (8000738 <Reset_Handler+0x7c>)
+ 80006ee:	f843 1b04 	str.w	r1, [r3], #4
+ 80006f2:	4293      	cmp	r3, r2
+ 80006f4:	d1fb      	bne.n	80006ee <Reset_Handler+0x32>
+ 80006f6:	4c11      	ldr	r4, [pc, #68]	; (800073c <Reset_Handler+0x80>)
+ 80006f8:	4b11      	ldr	r3, [pc, #68]	; (8000740 <Reset_Handler+0x84>)
+ 80006fa:	429c      	cmp	r4, r3
+ 80006fc:	d20b      	bcs.n	8000716 <Reset_Handler+0x5a>
+ 80006fe:	3b01      	subs	r3, #1
+ 8000700:	4625      	mov	r5, r4
+ 8000702:	1b1b      	subs	r3, r3, r4
+ 8000704:	f023 0303 	bic.w	r3, r3, #3
+ 8000708:	3304      	adds	r3, #4
+ 800070a:	441c      	add	r4, r3
+ 800070c:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000710:	4798      	blx	r3
+ 8000712:	42ac      	cmp	r4, r5
+ 8000714:	d1fa      	bne.n	800070c <Reset_Handler+0x50>
+ 8000716:	f000 f81b 	bl	8000750 <main>
+ 800071a:	e7fe      	b.n	800071a <Reset_Handler+0x5e>
+ 800071c:	20010000 	.word	0x20010000
+ 8000720:	20010000 	.word	0x20010000
+ 8000724:	0800076c 	.word	0x0800076c
+ 8000728:	20010000 	.word	0x20010000
+ 800072c:	20010000 	.word	0x20010000
+ 8000730:	20010000 	.word	0x20010000
+ 8000734:	20010390 	.word	0x20010390
+ 8000738:	080001c9 	.word	0x080001c9
+ 800073c:	08000afc 	.word	0x08000afc
+ 8000740:	08000afc 	.word	0x08000afc
+
+Disassembly of section .text._ZN5__RCCC2Ev:
+
+08000744 <_ZN5__RCCC1Ev>:
+ 8000744:	2200      	movs	r2, #0
+ 8000746:	6002      	str	r2, [r0, #0]
+ 8000748:	4770      	bx	lr
+ 800074a:	bf00      	nop
+
+Disassembly of section .text._ZN5__RCC11MCO1_EnableEii:
+
+0800074c <_ZN5__RCC11MCO1_EnableEii>:
+ 800074c:	4770      	bx	lr
+ 800074e:	bf00      	nop
+
+Disassembly of section .text.startup.main:
+
+08000750 <main>:
+ 8000750:	b500      	push	{lr}
+ 8000752:	b085      	sub	sp, #20
+ 8000754:	4668      	mov	r0, sp
+ 8000756:	f7ff fff5 	bl	8000744 <_ZN5__RCCC1Ev>
+ 800075a:	4668      	mov	r0, sp
+ 800075c:	2202      	movs	r2, #2
+ 800075e:	2101      	movs	r1, #1
+ 8000760:	f7ff fff4 	bl	800074c <_ZN5__RCC11MCO1_EnableEii>
+ 8000764:	2000      	movs	r0, #0
+ 8000766:	b005      	add	sp, #20
+ 8000768:	f85d fb04 	ldr.w	pc, [sp], #4

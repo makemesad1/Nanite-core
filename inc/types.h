@@ -2,7 +2,9 @@
 #define MTX_BASE_TYPES_H
 
 /* BOOL >> TRUE | FALSE*/
+#ifndef __cplusplus
 typedef int bool;
+#endif
 
 /* 8 Bit integer */
 typedef char int8_t;
