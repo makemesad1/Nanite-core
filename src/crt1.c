@@ -53,7 +53,6 @@ void __attribute__((naked, noreturn)) Reset_Handler()
     }
 	#endif
 	
-	main();
 	while(1);
 
 }
@@ -71,6 +70,7 @@ void register_irq_handler(int i, void (*func)(void)){
 }
 
 enum HANLDER_TYPE{
+
     NMI,
     HARDFAULT,
     MEMMANGE,
@@ -177,6 +177,7 @@ enum HANLDER_TYPE{
 	I2C4_EV,  
 	I2C4_ER,  
 	SPDIF_RX 
+	
 };
 
 

@@ -11,9 +11,9 @@ SRC_FOLDER = src
 OUTPUT = bin/Nanite.elf 
 
 
-SRC = src/nanitecrt.c src/rcc.cpp src/sketch.cpp
+SRC = src/nanitecrt.c src/rcc.cpp
 
-OBJ = src/nanitecrt.o src/rcc.o src/sketch.o
+OBJ = src/crt1.o src/rcc.o 
 
 
 all: bin $(OUTPUT)
