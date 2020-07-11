@@ -58,15 +58,6 @@ SECTIONS{
 		_ebss = .;
 	} >SRAM1
 
-
-	/* VECTORs in ram for dynamic vector assigment, goes right after bss section, so take care when writing to global arrays can overwrite the intclb sector */
-	.intclb : {
-		. = ALIGN(4);
-		_clbarr_ladr = .;
-		KEEP(*(.intclb))
-		_clbarr_eadr = .;
-	} >SRAM1
-
 	/* C++ Constructors */
 	. = ALIGN(4);
 	.init_array :
