@@ -18,13 +18,7 @@ extern void (*__init_array_end)();
 //Entry point
 extern int main();
 
-/* Default Handler, responsible for interrupt handling default behavior */
-void __attribute__((naked, noreturn)) Default_Handler(){
 
-	//For now it is just going to block
-	for(;;);
-
-}
 
 	
 /* Reset Handler is responsible for runtime initialization */
@@ -53,6 +47,13 @@ void __attribute__((naked, noreturn)) Reset_Handler()
 
 }
 
+/* Default Handler, responsible for interrupt handling default behavior */
+void __attribute__((naked, noreturn)) Default_Handler(){
+
+	//For now it is just going to block
+	for(;;);
+
+}
 
 /* Weak aliases to default handler */
 	void NMI_Handler() 						__attribute__ ((weak, alias ("Default_Handler")));
