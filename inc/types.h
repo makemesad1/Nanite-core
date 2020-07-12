@@ -27,6 +27,7 @@ typedef uint32_t size_t;  //usinged size_t
 typedef int32_t  ssize_t; //signed size_t for error returns
 
 /* Addressing */
-typedef uint32_t paddr_t;
+typedef uint32_t  addr_t;
+typedef uint32_t *paddr_t;
 
 #endif
