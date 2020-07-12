@@ -30,7 +30,7 @@ SECTIONS{
 	
 	/* Text section */
 	/* All boot code goes here */
-	/* TEXT with offset to isr vecotr but in deffrent memory region, true harvard layout */
+	/* TEXT with offset to isr vecotr but in deffrent memory region, go harvard*/
 	.text (ORIGIN(FLASH_ITCM) + SIZEOF(.isr_vector)): {
         . = ALIGN(4);
         *(.text)
@@ -49,6 +49,12 @@ SECTIONS{
 		. = ALIGN(4);
 		_edata = .;
 	} >SRAM1 AT>FLASH_AXIM
+
+	.rodata : {
+		. = ALIGN(4);
+		*(.rodata)
+		*(.rodata.*)
+	} > FLASH_AXIM
 	
 	.bss : {
 		. = ALIGN(4);
@@ -66,7 +72,7 @@ SECTIONS{
     	KEEP(*(.init_array*))
    	    __init_array_end = .;
 		   
-	} > FLASH_AXIM
+	} >FLASH_AXIM
 }
 
 /* Work on more exact memory map */
